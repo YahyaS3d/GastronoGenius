@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js"
-
+//provide the URL and Key 
+//add info into .env file 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY
 
