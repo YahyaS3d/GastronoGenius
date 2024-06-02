@@ -24,13 +24,12 @@ Clever and creative abilities of GPT generator build from scratch: Creating a co
 
 ```bash
 pnpm install
-pnpm dev
 ```
 
 2. Copy the `.env.example` to `.env` and update the variables.
 
 ```bash
-cp .env.example .env
+copy .env.example .env
 ```
 
 3. Start the development server
