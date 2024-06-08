@@ -1,0 +1,16 @@
+Step 1: Create JWT template into clerk appleaction 
+
+Step 2: Sign JWT with Supabase secret
+
+Step 3: Configure client
+
+Step 4: Set up Clerk Provider
+
+Step 5: Set auth token with Supabase
+
+Access user ID in RLS policies
+
+Access user ID in table column
+
+Resources: 
+https://supabase.com/partners/integrations/clerk
