@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-
 import type { Tables } from "@/types/database.types"
 import { Badge } from "@/components/ui/badge"
 import {
@@ -25,7 +24,7 @@ export function RecipeCardPreview({
 }: RecipeCardProps) {
   const isVegan = recipe?.vegan === "Yes"
   const isPaleo = recipe?.paleo === "Yes"
-  const cookingTime = recipe?.cooking_time?.replaceAll(/[^0-9]/g, "")
+  const cookingTime = String(recipe?.cooking_time).replace(/[^0-9]/g, "")
   const href = isPrivate
     ? `/dashboard/my-recipes/${recipe.id}`
     : `/recipes/${recipe.id}`
