@@ -4,7 +4,7 @@ import type { User } from "@clerk/nextjs/dist/types/server"
 
 import { siteConfig } from "@/config/site"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,7 +12,6 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Icons } from "@/components/icons"
@@ -67,7 +66,7 @@ export function SiteHeader({ user }: SiteHeaderProps) {
                           aria-hidden="true"
                         />
                         Account
-                        <DropdownMenuShortcut>⇧⌘A</DropdownMenuShortcut>
+                        <span className="ml-auto text-xs">⇧⌘A</span>
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
@@ -77,15 +76,19 @@ export function SiteHeader({ user }: SiteHeaderProps) {
                           aria-hidden="true"
                         />
                         My Recipes
-                        <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
+                        <span className="ml-auto text-xs">⌘D</span>
                       </Link>
                     </DropdownMenuItem>
                   </DropdownMenuGroup>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <Icons.logout className="mr-2 size-4" aria-hidden="true" />
-                    <SignOutButton />
-                    <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                  <DropdownMenuItem asChild>
+                    <SignOutButton>
+                      <div className="flex items-center">
+                        <Icons.logout className="mr-2 size-4" aria-hidden="true" />
+                        Sign Out
+                        <span className="ml-auto text-xs">⇧⌘Q</span>
+                      </div>
+                    </SignOutButton>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -98,22 +101,6 @@ export function SiteHeader({ user }: SiteHeaderProps) {
                 </Link>
               </>
             )}
-            {/* <Link
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div
-                className={buttonVariants({
-                  size: "sm",
-                  variant: "ghost",
-                  className: "md:ml-3",
-                })}
-              >
-                <Icons.gitHub className="size-4 md:size-5" />
-                <span className="sr-only">GitHub</span>
-              </div>
-            </Link> */}
             <ThemeToggle />
           </nav>
         </div>
