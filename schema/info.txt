@@ -1,0 +1,29 @@
+Integrating sqls schema into Supabase
+Introduction
+This guide will walk you through the steps to integrate the create_generations_table.sql file into your Supabase project. The SQL file contains a script to create a generations table with various columns to store recipe-related data.
+
+Prerequisites
+A Supabase account
+A Supabase project
+create schema file from this folder 
+Steps
+Step 1: Log in to Supabase
+Navigate to Supabase.
+Log in with your credentials.
+Step 2: Open Your Project
+After logging in, select the project where you want to integrate the SQL file.
+Step 3: Access the SQL Editor
+In the left sidebar, click on SQL Editor.
+Step 4: Upload and Execute the SQL File
+In the SQL Editor, click on the New query button.
+Open the create_generations_table.sql file in a text editor, copy the contents of the file.
+Paste the contents into the query editor in Supabase.
+Step 5: Run the Query
+Click the Run button to execute the SQL script.
+Wait for the execution to complete. You should see a confirmation message indicating that the table has been created successfully.
+Step 6: Verify the Table Creation
+In the left sidebar, click on Table Editor.
+Check if the generations table is listed. Click on it to see the columns and verify that they match the ones specified in the SQL file.
+
+For more information on managing your database with Supabase, refer to the Supabase Documentation.
+https://supabase.com/docs
