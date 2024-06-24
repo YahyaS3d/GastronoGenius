@@ -29,8 +29,8 @@ export function RecipeCard({ recipe }: GeneratedRecipeContentProps) {
   const onSaveRecipe = async () => {
     toast.promise(saveRecipe(recipe), {
       loading: "Saving...",
-      success: () => "Cool! Recipe saved successfully.",
-      error: "Oh No! Sign-In to save recipes!",
+      success: () => "Recipe saved successfully.",
+      error: "Sign-In to save recipes!",
     })
   }
 
