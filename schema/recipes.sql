@@ -1,6 +1,7 @@
+CREATE EXTENSION IF NOT EXISTS "pgcrypto"; -- Required for uuid_generate_v4()
 CREATE TABLE IF NOT EXISTS recipes (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  user_id UUID,
+  user_id TEXT, -- Changed from UUID to TEXT
   title TEXT NOT NULL,
   description TEXT,
   content_json JSONB,
