@@ -1,5 +1,51 @@
-dist/*
-.cache
-public
-node_modules
+# Build directories
+dist/
+build/
+out/
+.cache/
+public/
+
+# Dependencies
+node_modules/
+
+# Configuration files
+*.config.js
+*.config.cjs
+*.config.mjs
+*.config.ts
+*.config.json
+
+# Log files
+*.log
+*.log.*
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+*.old
+*.backup
+
+# OS generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Other
 *.esm.js
+*.min.js
+*.d.ts
+coverage/
+.eslintcache
