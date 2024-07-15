@@ -35,10 +35,18 @@ export function GenerateRecipe() {
       const prompt = generatePrompt(values)
       const completion = await complete(prompt)
       setFormValues(values)
-      if (!completion) throw new Error("Failed to generate recipe. Try again.")
+      if (!completion) {
+        toast.error("Failed to generate recipe. Try again.")
+        throw new Error("Failed to generate recipe. Try again.")
+      }
       try {
         const result = JSON.parse(completion)
-        setRecipe(result)
+        if (result.error) {
+          toast.error(result.error)
+          setRecipe(null)
+        } else {
+          setRecipe(result)
+        }
       } catch (error) {
         console.error("Error parsing JSON:", error)
         toast.error("Uh oh! Failed to generate recipe. Try again.")
