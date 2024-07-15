@@ -17,8 +17,9 @@ export default async function IndexPage() {
         <PageHeaderHeading>
           Say goodbye to mealtime indecision with
           <span className="bg-gradient-to-r from-violet-500 to-teal-300 bg-clip-text text-transparent">
-            {" Gastrono Genius 🍳"}
+            {" Gastrono Genius"}
           </span>
+          <span> 🍳 </span>
         </PageHeaderHeading>
         <PageHeaderDescription>
           Free. Open Source. Recipe generator powered by OpenAI and ChatGPT.
