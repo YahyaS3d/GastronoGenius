@@ -20,13 +20,10 @@ Ingredient Substitution: Suggest alternative ingredients for recipes based on av
 - **Database**: [Supabase](https://supabase.com/) 
 - **Authentication**: [Clerk](https://clerk.com/) 
 - **Deployment**: [Vercel](https://vercel.com/)
-- **Analytics**: [Vercel Analytics](https://vercel.com/analytics/)
-- [Zod](https://zod.dev/) for TypeScript-first schema declaration and validation  
-- Automatic import sorting with `@ianvs/prettier-plugin-sort-imports`
 
 ## Running Locally
 
-1. Clone the repository and install the dependencies
+1. Install dependencies 
 
 ```bash
 pnpm install
@@ -44,4 +41,6 @@ copy .env.example .env
 pnpm run dev
 ```
 
-
+## Note 
+* for more info about the project visit repo wiki 
+* The work was done under the guidance of Dr. Yehuda Hassin, Azrieli, Jerusalem Academic College of Engineering - Department of Software Engineering.
