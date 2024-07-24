@@ -1,16 +1,45 @@
 "use client"
 
-import React, { useCallback, useEffect, useState } from "react"
 import { useCompletion } from "ai/react"
+import React, { useCallback, useEffect, useState } from "react"
 import { toast } from "sonner"
 
-import { defaultValues, Recipe, type FormData } from "@/types/types"
-import { saveGeneration } from "@/lib/actions"
-import { generatePrompt } from "@/lib/generate-prompt"
-import { cn } from "@/lib/utils"
 import { RecipeForm } from "@/components/form/recipe-form"
 import { RecipeCard } from "@/components/recipe/recipe-card"
 import { RecipeCardSkeleton } from "@/components/recipe/recipe-card-skeleton"
+import { saveGeneration } from "@/lib/actions"
+import { generatePrompt } from "@/lib/generate-prompt"
+import { cn } from "@/lib/utils"
+import { defaultValues, Recipe, type FormData } from "@/types/types"
+
+// Function to check if an ingredient is valid using OpenAI API
+async function isValidIngredient(ingredient: string): Promise<boolean> {
+    try {
+      const response = await fetch('/api/check-ingredient', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ ingredient })
+      })
+      const data = await response.json()
+  
+      // Debugging - print the response data
+      console.log(`Response for ${ingredient}:`, data)
+  
+      // Ensure data is in the correct format
+      if (data && typeof data.content === "string") {
+        return data.content.trim().toLowerCase() === "yes"
+      } else {
+        console.error(`Unexpected response format for ${ingredient}:`, data)
+        return false
+      }
+    } catch (error) {
+      console.error("Error checking ingredient:", error)
+      return false
+    }
+  }
+  
 
 export function GenerateRecipe() {
   const [isRecipeVisible, setIsRecipeVisible] = useState<boolean>(false)
@@ -32,21 +61,24 @@ export function GenerateRecipe() {
 
   const onSubmit = useCallback(
     async (values: FormData, e: React.FormEvent) => {
+      const ingredients = values.ingredients.split(',').map(ingredient => ingredient.trim().toLowerCase())
+
+      // Validate each ingredient using the API
+      for (const ingredient of ingredients) {
+        const isValid = await isValidIngredient(ingredient)
+        if (!isValid) {
+          toast.error(`Invalid ingredient entered: ${ingredient}. Please provide valid ingredients.`)
+          return // Stop the process if any invalid ingredient is found
+        }
+      }
+
       const prompt = generatePrompt(values)
       const completion = await complete(prompt)
       setFormValues(values)
-      if (!completion) {
-        toast.error("Failed to generate recipe. Try again.")
-        throw new Error("Failed to generate recipe. Try again.")
-      }
+      if (!completion) throw new Error("Failed to generate recipe. Try again.")
       try {
         const result = JSON.parse(completion)
-        if (result.error) {
-          toast.error(result.error)
-          setRecipe(null)
-        } else {
-          setRecipe(result)
-        }
+        setRecipe(result)
       } catch (error) {
         console.error("Error parsing JSON:", error)
         toast.error("Uh oh! Failed to generate recipe. Try again.")
